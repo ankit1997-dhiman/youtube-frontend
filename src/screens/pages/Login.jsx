@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import ApiRequest from "../../helper/ApiRequest";
 import { useAuthContext } from "../../context/AuthContext";
+import { showToast } from "../../helper/toastHelper";
+import { API_URL } from "../../urls/apiUrl";
 function Login() {
-  const navigate = useNavigate();
   const fvalue = {
     email: "",
     password: "",
@@ -15,21 +15,20 @@ function Login() {
   const login = async (formValue) => {
     try {
       const response = await ApiRequest.post(
-        "http://localhost:4000/api/v1/users/login",
+        `${API_URL}users/login`,
         formValue
       );
       if (response.data) {
         loginUser(response.data.data);
       }
     } catch (error) {
-      console.log(error);
+      showToast(error.response.statusText, "error");
     }
   };
 
   const handleChange = (e) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
-    console.log(fieldName, fieldValue, "here");
 
     setFormValue((prev) => ({
       ...prev,
@@ -47,9 +46,7 @@ function Login() {
           <h2 className="text-2xl font-semibold mb-6 text-gray-700">Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label for="email" className="block text-gray-600 mb-2">
-                Email
-              </label>
+              <label className="block text-gray-600 mb-2">Email</label>
               <input
                 value={formValue.email}
                 name="email"
@@ -59,9 +56,7 @@ function Login() {
               />
             </div>
             <div className="mb-6">
-              <label for="password" className="block text-gray-600 mb-2">
-                Password
-              </label>
+              <label className="block text-gray-600 mb-2">Password</label>
               <input
                 type="password"
                 value={formValue.password}

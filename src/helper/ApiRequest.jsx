@@ -4,8 +4,9 @@ import Cookies from "js-cookie";
 axios.interceptors.request.use(
   async (config) => {
     const accessToken = Cookies.get("access_token");
-    // eslint-disable-next-line no-param-reassign
     config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : "";
+
+    config.withCredentials = true;
     return Promise.resolve(config);
   },
   (err) => {
@@ -16,6 +17,6 @@ const post = (url, data, config) => {
   return axios.post(url, data, config);
 };
 const get = (url, data) => {
-  return axios.post(url, data);
+  return axios.get(url, data);
 };
 export default { post, get };

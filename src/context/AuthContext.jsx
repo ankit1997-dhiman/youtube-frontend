@@ -2,10 +2,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import ApiRequest from "../helper/ApiRequest";
+import { showToast } from "../helper/toastHelper";
+import { API_URL } from "../urls/apiUrl";
 
-function checkInitToken() {
-  return Cookies.get("access_token");
-}
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
 
@@ -16,13 +15,14 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const existingToken = checkInitToken();
+  const existingToken = Cookies.get("access_token");
 
   const navigate = useNavigate();
-
   const loginUser = (values) => {
     setUser(values.user);
+
     Cookies.set("access_token", values.userAccessToken);
+    Cookies.set("refresh_token", values.userRefereshToken);
     navigate("/dashboard");
   };
 
@@ -34,20 +34,16 @@ export const AuthContextProvider = ({ children }) => {
 
   const getRefreshToken = async () => {
     try {
-      const response = await ApiRequest.post(
-        "http://localhost:4000/api/v1/users/refresh-token"
-      );
-      Cookies.set("access_token", response.data.data.userAccessToken);
-      console.log(response);
-      if (response.data.data) loginUser(response.data.data);
+      const response = await ApiRequest.post(`${API_URL}users/refresh-token`);
+      if (response?.data?.data) loginUser(response?.data?.data);
     } catch (error) {
+      showToast(error.message, "error");
       logoutUser();
     }
   };
 
   useEffect(() => {
     if (existingToken) {
-      console.log("Iam here");
       getRefreshToken();
     }
   }, []);
