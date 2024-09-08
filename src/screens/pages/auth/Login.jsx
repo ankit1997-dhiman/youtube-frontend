@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-import ApiRequest from "../../helper/ApiRequest";
-import { useAuthContext } from "../../context/AuthContext";
-import { showToast } from "../../helper/toastHelper";
-import { API_URL } from "../../urls/apiUrl";
+import ApiRequest from "../../../helper/ApiRequest";
+import { useAuthContext } from "../../../context/AuthContext";
+import { showToast } from "../../../helper/toastHelper";
+import { API_URL } from "../../../urls/apiUrl";
+import { AUTH_URLS } from "../../../urls/authUrls";
+import { Link } from "react-router-dom";
 function Login() {
   const fvalue = {
     email: "",
@@ -72,6 +74,15 @@ function Login() {
             >
               Login
             </button>
+            <hr></hr>
+            <div className="pt-6 text-center">
+              <Link
+                className="w-full  px-4 text-blue-500 text-center"
+                to={AUTH_URLS.REGISTER}
+              >
+                Sign Up
+              </Link>
+            </div>
           </form>
         </div>
       </div>
