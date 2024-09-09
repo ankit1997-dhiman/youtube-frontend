@@ -21,7 +21,7 @@ function Login() {
         formValue
       );
       if (response.data) {
-        loginUser(response.data.data);
+        loginUser(response.data.data, true);
       }
     } catch (error) {
       showToast(error.response.statusText, "error");

@@ -37,7 +37,9 @@ function Dashboard() {
           <main className="">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
               {video.length > 0
-                ? video.map((item) => <VideoCard key={item.id} item={item} />)
+                ? video.map((item) => (
+                    <VideoCard key={item._id} item={item} potraitView={false} />
+                  ))
                 : "No videos found"}
             </div>
           </main>

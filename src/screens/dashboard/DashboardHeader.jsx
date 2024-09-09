@@ -3,13 +3,15 @@ import { useAuthContext } from "../../context/AuthContext";
 
 const DashboardHeader = () => {
   const { user } = useAuthContext();
+  const username =
+    user.userName.charAt(0).toUpperCase() + user.userName.slice(1);
 
   return (
     <header className="bg-white shadow-md p-4 flex items-center justify-between">
       <h1 className="text-2xl font-bold text-gray-700">
         Welcome
         <span className="text-2xl font-medium pl-2 capitalize ">
-          {user.userName}
+          {username}
         </span>
       </h1>
       <div>
