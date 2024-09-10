@@ -24,17 +24,6 @@ const menus = [
 ];
 const Sider = () => {
   const { logoutUser } = useAuthContext();
-  const logout = async () => {
-    try {
-      const response = await ApiRequest.post(`${API_URL}users/logout`);
-      if (response) {
-        logoutUser();
-        showToast(response.message, "success");
-      }
-    } catch (error) {
-      showToast(error.response.message, "error");
-    }
-  };
 
   return (
     <div>
@@ -42,18 +31,21 @@ const Sider = () => {
         <div className="p-4 text-xl font-semibold">Dashboard</div>
         <nav className="mt-6">
           {menus.length
-            ? menus.map((item) => (
-                <DashboardLink
-                  key={item.key}
-                  menu_name={item.menu_name}
-                  href={item.href}
-                />
-              ))
+            ? menus.map((item) => {
+                console.log(item);
+                return (
+                  <DashboardLink
+                    key={item.key}
+                    menu_name={item.menu_name}
+                    href={item.href}
+                  />
+                );
+              })
             : ""}
           <div>
             <button
               className="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white w-full text-left"
-              onClick={logout}
+              onClick={logoutUser}
             >
               Logout
             </button>
@@ -65,11 +57,14 @@ const Sider = () => {
 };
 export default Sider;
 
-const DashboardLink = ({ href, menu_name }) => (
-  <Link
-    href={href}
-    className="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white"
-  >
-    {menu_name}
-  </Link>
-);
+const DashboardLink = ({ href, menu_name }) => {
+  console.log(href);
+  return (
+    <Link
+      to={href}
+      className="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white"
+    >
+      {menu_name}
+    </Link>
+  );
+};

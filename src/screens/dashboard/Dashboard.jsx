@@ -1,8 +1,7 @@
 import ApiRequest from "../../helper/ApiRequest";
 import { useEffect, useState } from "react";
 import { VideoCard } from "../pages/video/VideoCard";
-import DashboardHeader from "./DashboardHeader";
-import Sider from "../../layouts/sider/Sider";
+
 import { showToast } from "../../helper/toastHelper";
 import { API_URL } from "../../urls/apiUrl";
 
@@ -23,29 +22,20 @@ function Dashboard() {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="bg-gray-100  flex overflow-hidden">
-        {/* <!-- Sidebar --> */}
-        <Sider />
-
-        {/* <!-- Main content --> */}
-        <div className="flex-1 flex flex-col">
-          {/* <!-- Top navigation bar --> */}
-          <DashboardHeader />
-
-          {/* <!-- Main area --> */}
-          <main className="">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-              {video.length > 0
-                ? video.map((item) => (
-                    <VideoCard key={item._id} item={item} potraitView={false} />
-                  ))
-                : "No videos found"}
-            </div>
-          </main>
-        </div>
+        {/* <!-- Main area --> */}
+        <main className="">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+            {video.length > 0
+              ? video.map((item) => (
+                  <VideoCard key={item._id} item={item} potraitView={false} />
+                ))
+              : "No videos found"}
+          </div>
+        </main>
       </div>
-    </div>
+    </>
   );
 }
 export default Dashboard;

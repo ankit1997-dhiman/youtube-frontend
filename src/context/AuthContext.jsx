@@ -25,10 +25,18 @@ export const AuthContextProvider = ({ children }) => {
     if (redirect) navigate("/dashboard");
   };
 
-  const logoutUser = () => {
-    setUser(null);
-    Cookies.remove("access_token");
-    navigate("/");
+  const logoutUser = async () => {
+    try {
+      const response = await ApiRequest.post(`${API_URL}users/logout`);
+      if (response) {
+        setUser(null);
+        Cookies.remove("access_token");
+        navigate("/");
+        showToast(response.message, "success");
+      }
+    } catch (error) {
+      showToast(error.response.message, "error");
+    }
   };
 
   const getRefreshToken = async () => {

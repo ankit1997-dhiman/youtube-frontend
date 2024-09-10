@@ -44,6 +44,7 @@ const VideoById = () => {
             <div className="">
               <video
                 controls
+                autoPlay
                 key={videoById.video}
                 poster={videoById.thumbnail ? videoById.thumbnail : ""}
                 className="h-[600px] object-cover w-full rounded-xl"
