@@ -12,7 +12,8 @@ Currently, two official plugins are available:
 ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=for-the-badge)
 ![React Toastify](https://img.shields.io/badge/-React_Toastify-ffdd00?logo=react&logoColor=white&style=for-the-badge)
 ![TailwindCSS](https://img.shields.io/badge/-TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white&style=for-the-badge)
-![React Router](https://img.shields.io/badge/-React_Router_DOM-CA4245?logo=react-router&logoColor=white&style=
+![React Router](https://img.shields.io/badge/-React_Router_DOM-CA4245?logo=react-router&logoColor=white&style=for-the-badge)
+
 
 
 
