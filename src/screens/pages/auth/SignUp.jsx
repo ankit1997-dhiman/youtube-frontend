@@ -30,7 +30,6 @@ export const SignUp = () => {
   };
 
   const regisetUser = async (formValue) => {
-    console.log();
     try {
       formValue;
       const response = await ApiRequest.post(
