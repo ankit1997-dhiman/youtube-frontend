@@ -26,7 +26,6 @@ export const AddNewVideo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(addNewVideoForm);
     // Create a FormData object to handle file uploads
     const formData = new FormData();
     formData.append("title", addNewVideoForm.title);
@@ -40,7 +39,6 @@ export const AddNewVideo = () => {
 
     try {
       const response = await ApiRequest.post(`${API_URL}video/`, formData);
-      console.log(response);
     } catch (error) {
       showToast("Some Thing Went Wrong", "error");
     }

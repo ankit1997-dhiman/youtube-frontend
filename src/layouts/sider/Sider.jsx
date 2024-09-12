@@ -23,39 +23,36 @@ const Sider = () => {
   const { logoutUser } = useAuthContext();
 
   return (
-    <nav className="pt-4 flex flex-col">
-      {menus.length
-        ? menus.map((item) => {
-            console.log(item);
-            return (
-              <DashboardLink
-                key={item.key}
-                menu_name={item.menu_name}
-                href={item.href}
-              />
-            );
-          })
-        : ""}
-      <div>
-        <button
-          className="block py-2 px-4 text-black hover:bg-gray-700 hover:text-white  text-left"
-          onClick={logoutUser}
-        >
-          Logout
-        </button>
-      </div>
-    </nav>
+    <div className="">
+      <nav className="pt-4 flex flex-col fixed left-0 bg-black  bottom-0 top-[80px] w-[190px] z-10">
+        {menus.length
+          ? menus.map((item) => {
+              return (
+                <DashboardLink
+                  key={item.key}
+                  menu_name={item.menu_name}
+                  href={item.href}
+                />
+              );
+            })
+          : ""}
+        <div>
+          <button
+            className="block py-2 px-4 text-white    text-left"
+            onClick={logoutUser}
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
+    </div>
   );
 };
 export default Sider;
 
 const DashboardLink = ({ href, menu_name }) => {
-  console.log(href);
   return (
-    <Link
-      to={href}
-      className="block py-2 px-4 text-black hover:bg-gray-700 hover:text-white"
-    >
+    <Link to={href} className="block py-2 px-4 text-white text-left">
       {menu_name}
     </Link>
   );

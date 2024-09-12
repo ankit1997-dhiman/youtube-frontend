@@ -22,20 +22,15 @@ function Dashboard() {
   }, []);
 
   return (
-    <>
-      <div className="bg-gray-100">
-        {/* <!-- Main area --> */}
-        <main className="">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-            {video.length > 0
-              ? video.map((item) => (
-                  <VideoCard key={item._id} item={item} potraitView={false} />
-                ))
-              : "No videos found"}
-          </div>
-        </main>
+    <div className="relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 absolute left-[198px] top-[90px]">
+        {video.length > 0
+          ? video.map((item) => (
+              <VideoCard key={item._id} item={item} potraitView={false} />
+            ))
+          : "No videos found"}
       </div>
-    </>
+    </div>
   );
 }
 export default Dashboard;

@@ -16,7 +16,6 @@ export const SignUp = () => {
   const handleChange = (e) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
-    console.log(fieldName, fieldValue);
 
     setRegisterUser((prev) => ({
       ...prev,
@@ -25,7 +24,7 @@ export const SignUp = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("here");
+
     regisetUser(register_user);
   };
 
@@ -38,7 +37,6 @@ export const SignUp = () => {
       );
       showToast("Registerd Successfully", "success");
     } catch (error) {
-      console.log(error);
       showToast(error.response.message, "error");
     }
   };
