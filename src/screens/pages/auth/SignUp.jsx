@@ -7,11 +7,11 @@ import { AUTH_URLS } from "../../../urls/authUrls";
 
 export const SignUp = () => {
   const registerFormvalue = {
-    fullName: "",
+    userName: "",
     email: "",
     password: "",
   };
-  const [register_user, setRegisterUser] = useState(registerFormvalue);
+  const [registerUser, setRegisterUser] = useState(registerFormvalue);
 
   const handleChange = (e) => {
     const fieldName = e.target.name;
@@ -24,17 +24,16 @@ export const SignUp = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    regisetUser(register_user);
+    regisetUser(registerUser);
   };
 
   const regisetUser = async (formValue) => {
     try {
-      formValue;
       const response = await ApiRequest.post(
         `${API_URL}users/register`,
         formValue
       );
+      console.log({ formValue });
       showToast("Registerd Successfully", "success");
     } catch (error) {
       showToast(error.response.message, "error");
@@ -50,8 +49,8 @@ export const SignUp = () => {
             <div className="mb-4">
               <label className="block text-gray-600 mb-2">FullName</label>
               <input
-                value={register_user.name}
-                name="fullName"
+                value={registerUser.userName}
+                name="userName"
                 onChange={(e) => handleChange(e)}
                 required
                 type="text"
@@ -61,7 +60,7 @@ export const SignUp = () => {
             <div className="mb-4">
               <label className="block text-gray-600 mb-2">Email</label>
               <input
-                value={register_user.email}
+                value={registerUser.email}
                 name="email"
                 onChange={(e) => handleChange(e)}
                 required
@@ -73,7 +72,7 @@ export const SignUp = () => {
               <label className="block text-gray-600 mb-2">Password</label>
               <input
                 type="password"
-                value={register_user.password}
+                value={registerUser.password}
                 name="password"
                 onChange={(e) => handleChange(e)}
                 required

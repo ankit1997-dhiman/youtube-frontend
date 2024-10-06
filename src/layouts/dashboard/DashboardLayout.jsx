@@ -1,4 +1,4 @@
-import DasboardNavigator from "../../navigation/DasboardNavigator";
+import Dashboard from "../../screens/dashboard/Dashboard";
 import DashboardHeader from "../../screens/dashboard/DashboardHeader";
 import Sider from "../sider/Sider";
 
@@ -14,7 +14,7 @@ const DashboardLayout = () => {
         </div>
 
         <div className="">
-          <DasboardNavigator />
+          <Dashboard />
         </div>
       </div>
     </div>
